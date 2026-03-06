@@ -1,31 +1,40 @@
-import { useState } from 'react'
-import reactLogo from '../../assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useUserStore } from '../../context/useUserStore';
 import './Home.css';
-function Home() { 
-  const [count, setCount] = useState(0)
+
+function Home() {
+  // Extraemos los datos y la función de login del Store
+  const { user, isAuthenticated, login, logout } = useUserStore();
+
+  const handleSimulateLogin = () => {
+    // Simulamos un usuario con los datos de tu interfaz 'User'
+    login({
+      id: '123',
+      name: 'Estudiante Prueba',
+      email: 'prueba@universidad.edu',
+      career: 'Ingeniería de Sistemas',
+      semester: 5,
+      bio: 'Apasionado por el desarrollo web.'
+    });
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>UniversidadPBSocial</h1> {}
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Bienvenido a la red social universitaria.
-        </p>
-      </div>
-    </>
-  )
+    <div className="home-container">
+      <h1>UniversidadPBSocial</h1>
+      
+      {!isAuthenticated ? (
+        <div className="auth-section">
+          <p>Bienvenido. Por favor, identifica tu perfil académico.</p>
+          <button onClick={handleSimulateLogin}>Simular Inicio de Sesión</button>
+        </div>
+      ) : (
+        <div className="welcome-section">
+          <h2>Hola, {user?.name}! 👋</h2>
+          <p>Carrera: {user?.career} | Semestre: {user?.semester}</p>
+          <button onClick={logout} style={{ backgroundColor: 'red' }}>Cerrar Sesión</button>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default Home 
+export default Home;
