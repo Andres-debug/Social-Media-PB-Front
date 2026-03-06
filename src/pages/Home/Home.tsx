@@ -2,15 +2,13 @@ import { useUserStore } from '../../context/useUserStore';
 import './Home.css';
 
 function Home() {
-  // Extraemos los datos y la función de login del Store
   const { user, isAuthenticated, login, logout } = useUserStore();
 
   const handleSimulateLogin = () => {
-    // Simulamos un usuario con los datos de tu interfaz 'User'
     login({
       id: '123',
       name: 'Estudiante Prueba',
-      email: 'prueba@universidad.edu',
+      email: 'prueba@pascualbravo.edu.co',
       career: 'Ingeniería de Sistemas',
       semester: 5,
       bio: 'Apasionado por el desarrollo web.'
@@ -19,18 +17,18 @@ function Home() {
 
   return (
     <div className="home-container">
-      <h1>UniversidadPBSocial</h1>
+      <h1 className='text-3xl font-bold text-primary font-primary'>SocialMediaPb</h1>
       
       {!isAuthenticated ? (
         <div className="auth-section">
-          <p>Bienvenido. Por favor, identifica tu perfil académico.</p>
-          <button onClick={handleSimulateLogin}>Simular Inicio de Sesión</button>
+          <p className='text-3xl font-bold text-secundario font-primary'>IniciaSesion.</p>
+          <button onClick={handleSimulateLogin} className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Simular Inicio de Sesión</button>
         </div>
       ) : (
         <div className="welcome-section">
           <h2>Hola, {user?.name}! 👋</h2>
           <p>Carrera: {user?.career} | Semestre: {user?.semester}</p>
-          <button onClick={logout} style={{ backgroundColor: 'red' }}>Cerrar Sesión</button>
+          <button onClick={logout} style={{ backgroundColor: 'red' }} className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Cerrar Sesión</button>
         </div>
       )}
     </div>
