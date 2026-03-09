@@ -1,38 +1,30 @@
 import { useUserStore } from '../../context/useUserStore';
-import './Home.css';
+import { Navbar } from '../../layout/Navbar';
 
-function Home() {
-  const { user, isAuthenticated, login, logout } = useUserStore();
-
-  const handleSimulateLogin = () => {
-    login({
-      id: '123',
-      name: 'Estudiante Prueba',
-      email: 'prueba@pascualbravo.edu.co',
-      career: 'Ingeniería de Sistemas',
-      semester: 5,
-      bio: 'Apasionado por el desarrollo web.'
-    });
-  };
+const Home = () => {
+  const user = useUserStore((state) => state.user);
 
   return (
-    <div className="home-container">
-      <h1 className='text-3xl font-bold text-primary font-primary'>SocialMediaPb</h1>
+    <div className="min-h-screen bg-gray-50">
+      <Navbar /> {}
       
-      {!isAuthenticated ? (
-        <div className="auth-section">
-          <p className='text-3xl font-bold text-secundario font-primary'>IniciaSesion.</p>
-          <button onClick={handleSimulateLogin} className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Simular Inicio de Sesión</button>
+      <main className="max-w-5xl mx-auto px-4 py-8">
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+          <h2 className="text-2xl font-bold text-gray-800">
+            ¡Qué bueno verte, {user?.name}! 👋
+          </h2>
+          <p className="text-gray-500 mt-1">
+            Carrera: {user?.career} | Semestre: {user?.semester}
+          </p>
         </div>
-      ) : (
-        <div className="welcome-section">
-          <h2>Hola, {user?.name}! 👋</h2>
-          <p>Carrera: {user?.career} | Semestre: {user?.semester}</p>
-          <button onClick={logout} style={{ backgroundColor: 'red' }} className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Cerrar Sesión</button>
+
+        {}
+        <div className="mt-8 p-12 border-2 border-dashed border-gray-300 rounded-3xl text-center">
+          <p className="text-gray-400">El feed de noticias aparecerá aquí.</p>
         </div>
-      )}
+      </main>
     </div>
   );
-}
+};
 
 export default Home;
