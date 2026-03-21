@@ -1,4 +1,8 @@
-module.exports = {
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}", // Esto incluye la carpeta pages y Home
+  ],
   theme: {
     extend: {
       colors: {
@@ -16,6 +20,7 @@ module.exports = {
           950: '#082f49',
         }
       }
-    }
-  }
+    },
+  },
+  plugins: [],
 }

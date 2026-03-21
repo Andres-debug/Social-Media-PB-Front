@@ -5,11 +5,11 @@ const Home = () => {
   const user = useUserStore((state) => state.user);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-sky-100">
       <Navbar /> {}
       
       <main className="max-w-5xl mx-auto px-4 py-8">
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+        <div className="bg-sky-200 p-8 rounded-2xl shadow-sm border border-gray-200">
           <h2 className="text-2xl font-bold text-gray-800">
             ¡Qué bueno verte, {user?.name}! 👋
           </h2>
