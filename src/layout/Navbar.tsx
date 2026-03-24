@@ -12,14 +12,14 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white border-b sticky top-0 z-50">
+    <nav className="bg-sky-900 border-b sticky top-0 z-50">
       <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-        <span className="text-2xl font-black text-blue-600">UniverSocial</span>
+        <span className="text-2xl font-black text-sky-300 p-4">NOOD</span>
         <div className="flex items-center gap-4">
-          <span className="text-sm font-medium text-gray-600 hidden sm:block">
+          <span className="text-sm font-medium text-sky-50 hidden sm:block">
             Estudiante: {user?.name}
           </span>
-          <Button variant="danger" onClick={handleLogout} className="text-sm">
+          <Button onClick={handleLogout} className="text-black bg-sky-200">
             Cerrar Sesión
           </Button>
         </div>
