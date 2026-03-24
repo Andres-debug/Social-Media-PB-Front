@@ -1,7 +1,7 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}", // Esto incluye la carpeta pages y Home
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -18,8 +18,11 @@ export default {
           800: '#0369a1',
           900: '#075985',
           950: '#082f49',
-        }
-      }
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
     },
   },
   plugins: [],
