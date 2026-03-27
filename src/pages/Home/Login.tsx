@@ -29,21 +29,21 @@ const Login = () => {
 
   return (
     // Contenedor principal: pantalla completa, flexbox para dividir en dos
-    <div className="min-h-screen flex bg-sky-900 font-sans text-slate-900">
+    <div className="min-h-screen flex bg-sky-50 font-sans text-slate-900">
       
       {/* LADO IZQUIERDO: Branding y Logo */}
       {/* Se oculta en móviles (`hidden`), se muestra en desktop (`lg:flex`) */}
-      <div className="hidden lg:flex lg:w-1/2 bg-sky-900 flex-col justify-center items-center p-12 relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 bg-sky-50 flex-col justify-center items-center p-12 relative overflow-hidden">
         
         {/* Decoración de fondo */}
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent"></div>
         
         <div className="relative z-10 text-center text-white">
           {/* Tu logo PNG */}
-          <div className="flex justify-center mb-8">
-            <img src={logoPng} alt="Nodd Logo" className="w-72 h-auto drop-shadow-2xl" />
+          <div className="flex justify-center mb-2">
+            <img src={logoPng} alt="Nodd Logo" className="w-96 h-auto drop-shadow-2xl" />
           </div>
-          <h2 className="text-6xl font-black text-sky-950 tracking-tighter mt-2">
+          <h2 className="text-6xl font-black text-sky-900 tracking-tighter mt-2">
             NODD
           </h2>
         </div>
@@ -58,10 +58,16 @@ const Login = () => {
           
           {/* Títulos y Subtítulos */}
           <div className="text-center mb-10">
-            <h1 className="text-4xl font-extrabold text-sky-500 mb-2 leading-tight">
+
+            {/* LOGO VERSIÓN MÓVIL (Solo se ve en pantallas pequeñas) */}
+            <div className="flex lg:hidden justify-center mb-1">
+              <img src={logoPng} alt="Nodd Logo" className="w-32 h-auto drop-shadow-md" />
+            </div>
+
+            <h1 className="text-4xl font-extrabold text-sky-800 mb-2 leading-tight">
               Conecta en tiempo real
             </h1>
-            <p className="text-2xl font-bold text-slate-800">
+            <p className="text-4xl font-extrabold text-sky-700">
               Empieza a Nodear
             </p>
           </div>
