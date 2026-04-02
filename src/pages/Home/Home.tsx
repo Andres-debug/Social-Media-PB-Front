@@ -1,5 +1,6 @@
 import { useUserStore } from '../../context/useUserStore';
 import { Navbar } from '../../layout/Navbar';
+import { Footer } from '../../layout/Footer';
 import NoddCard from "../../components/NoodCard";
 import { mockData } from "../../utils/mockData";
 import { FiSmile } from 'react-icons/fi';
@@ -8,14 +9,12 @@ const Home = () => {
   const user = useUserStore((state) => state.user);
 
   return (
-    <div className="min-h-screen bg-sky-100 pb-24 md:pb-0">
-      
-      {/* Navbar */}
+    <div className="min-h-screen bg-sky-100 flex flex-col">
+       
       <Navbar />
-
-      <main className="max-w-6xl mx-auto px-4 py-8">
-        
-        {/* Bienvenida */}
+ 
+      <main className="w-[90%] max-w-5xl mx-auto py-8 flex-1">
+         
         <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
           <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
             ¡Qué bueno verte, {user?.name}!
@@ -25,19 +24,16 @@ const Home = () => {
             Carrera: {user?.career} | Semestre: {user?.semester}
           </p>
         </div>
-
-        {/* Input tipo X */}
+ 
         <div className="mt-8 bg-white p-4 rounded-2xl shadow-md">
           <div className="flex gap-3">
             
-            {/* Avatar */}
             <img
               src="https://i.pravatar.cc/150?img=5"
               alt="avatar"
               className="w-10 h-10 rounded-full"
             />
 
-            {/* Input + botón */}
             <div className="flex-1">
               <input
                 type="text"
@@ -58,20 +54,22 @@ const Home = () => {
 
           </div>
         </div>
-
-        {/* Feed */}
+ 
         <div className="mt-8 space-y-4">
           {mockData.map((item) => (
             <NoddCard
               key={item.id}
               username={item.username}
               text={item.text}
-              avatar={item.avatar}
+              avatar={item.avatar} 
             />
           ))}
         </div>
 
       </main>
+ 
+      <Footer />
+
     </div>
   );
 };
