@@ -2,22 +2,28 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserStore } from '../../context/useUserStore';
 
-const Login = () => {
+const Register = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [career, setCareer] = useState('');
+  const [semester, setSemester] = useState('');
   const [password, setPassword] = useState('');
-  const login = useUserStore((state) => state.login);
+
+  const login = useUserStore((state) => state.login); 
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email && password) {
+
+    if (name && email && password && career && semester) {
       login({
-        id: '1',
-        name: email.split('@')[0], 
-        email: email,
-        career: 'Ingeniería de Sistemas',
-        semester: 5
+        id: Date.now().toString(),
+        name,
+        email,
+        career,
+        semester: Number(semester)
       });
+
       navigate('/home');
     }
   };
@@ -25,14 +31,40 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-sky-900 text-white p-4">
       <form onSubmit={handleSubmit} className="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-sm">
-        <h2 className="text-4xl font-extrabold text-sky-300 p-4 mb-6 text-center">NODD</h2>
-        
+        <h2 className="text-4xl font-extrabold text-sky-300 p-4 mb-6 text-center">
+          Registro
+        </h2>
+
         <div className="space-y-4">
+          <input 
+            type="text" 
+            placeholder="Nombre"
+            className="w-full p-3 border rounded-lg text-black"
+            onChange={(e) => setName(e.target.value)}
+            required 
+          />
+
           <input 
             type="email" 
             placeholder="Correo u.edu.co"
             className="w-full p-3 border rounded-lg text-black"
             onChange={(e) => setEmail(e.target.value)}
+            required 
+          />
+
+          <input 
+            type="text" 
+            placeholder="Carrera"
+            className="w-full p-3 border rounded-lg text-black"
+            onChange={(e) => setCareer(e.target.value)}
+            required 
+          />
+
+          <input 
+            type="number" 
+            placeholder="Semestre"
+            className="w-full p-3 border rounded-lg text-black"
+            onChange={(e) => setSemester(e.target.value)}
             required 
           />
 
@@ -45,16 +77,7 @@ const Login = () => {
           />
 
           <button className="w-full bg-sky-600 text-white py-3 rounded-lg font-bold hover:bg-sky-900 transition">
-            Ingresar
-          </button>
-
-          
-          <button
-            type="button"
-            onClick={() => navigate('/register')}
-            className="w-full border border-sky-600 text-sky-600 py-3 rounded-lg font-bold hover:bg-sky-100 transition"
-          >
-            Regístrate
+            Registrarse
           </button>
         </div>
       </form>
@@ -62,4 +85,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
