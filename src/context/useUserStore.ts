@@ -14,3 +14,4 @@ export const useUserStore = create<UserState>((set) => ({
   login: (userData) => set({ user: userData, isAuthenticated: true }),
   logout: () => set({ user: null, isAuthenticated: false }),
 }));
+

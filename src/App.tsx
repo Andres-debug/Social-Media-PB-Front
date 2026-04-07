@@ -4,14 +4,18 @@ import Login from './pages/Home/Login';
 import Register from './pages/Home/Register';
 import Home from './pages/Home/Home';
 import Profile from './pages/Home/Profile';
+import ThemeToggle from './components/ThemeToggle';
 
 function App() {
   const isAuthenticated = useUserStore((state) => state.isAuthenticated);
 
   return (
     <Router>
+
+      <ThemeToggle />
+
       <Routes>
- 
+
         <Route 
           path="/" 
           element={!isAuthenticated ? <Login /> : <Navigate to="/home" />} 
@@ -21,7 +25,7 @@ function App() {
           path="/registro" 
           element={!isAuthenticated ? <Register /> : <Navigate to="/home" />} 
         />
- 
+
         <Route 
           path="/home" 
           element={isAuthenticated ? <Home /> : <Navigate to="/" />} 
@@ -31,7 +35,7 @@ function App() {
           path="/profile" 
           element={isAuthenticated ? <Profile /> : <Navigate to="/" />} 
         />
- 
+
         <Route 
           path="*" 
           element={<Navigate to={isAuthenticated ? "/home" : "/"} />} 

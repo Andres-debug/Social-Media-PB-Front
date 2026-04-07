@@ -1,6 +1,6 @@
 const ProfileStats = () => {
   return (
-    <div className="flex justify-around bg-white p-4 rounded-2xl shadow">
+    <div className="flex justify-around bg-white p-4  dark:bg-gray-800 rounded-2xl shadow">
 
       <div className="text-center">
         <p className="font-bold">120</p>
