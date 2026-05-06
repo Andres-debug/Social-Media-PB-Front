@@ -11,22 +11,21 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const login = useUserStore((state) => state.login);
+  const isLoading = useUserStore((state) => state.isLoading);
+  const error = useUserStore((state) => state.error);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const fullEmail = `${email}@pascualbravo.edu.co`;
-
-    if (email && password) {
-      login({
-        id: '1',
-        name: email,
-        email: fullEmail,
-        career: 'Ingeniería de Sistemas',
-        semester: 5
+    try {
+      await login({
+        email,
+        password,
       });
       navigate('/home');
+    } catch {
+      // El mensaje de error queda en state.error
     }
   };
 
@@ -74,20 +73,17 @@ const Login = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             
             {/* EMAIL */}
-            <div className="flex">
+            <div>
               <input 
-                type="text"
-                placeholder="usuario"
-                className="w-full p-4 border border-slate-300 rounded-l-xl outline-none text-black
+                type="email"
+                placeholder="correo@pascualbravo.edu.co"
+                className="w-full p-4 border border-slate-300 rounded-xl outline-none text-black
                            focus:ring-2 focus:ring-sky-400
                            dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required 
               />
-              <span className="flex items-center px-3 bg-slate-100 border border-l-0 border-slate-300 rounded-r-xl text-slate-600 text-sm
-                               dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300">
-                @pascualbravo.edu.co
-              </span>
             </div>
             
             {/* PASSWORD */}
@@ -97,17 +93,23 @@ const Login = () => {
               className="w-full p-4 border border-slate-300 rounded-xl outline-none text-black placeholder:text-slate-400
                          focus:ring-2 focus:ring-sky-400
                          dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
               required 
             />
 
+            {error && (
+              <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+            )}
+
             {/* BOTÓN */}
             <button 
               type="submit"
+              disabled={isLoading}
               className="w-full bg-sky-500 hover:bg-sky-600 text-white py-4 rounded-xl font-bold
-                         transition-all duration-200 transform hover:scale-[1.02] shadow-lg shadow-sky-500/30"
+                         transition-all duration-200 transform hover:scale-[1.02] shadow-lg shadow-sky-500/30 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Ingresar
+              {isLoading ? 'Ingresando...' : 'Ingresar'}
             </button>
           </form>
 
