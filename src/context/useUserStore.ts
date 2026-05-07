@@ -48,6 +48,7 @@ export const useUserStore = create<UserState>((set) => ({
   token: tokenFromStorage,
   isLoading: false,
   error: null,
+
   login: async (payload) => {
     set({ isLoading: true, error: null });
 
@@ -57,6 +58,7 @@ export const useUserStore = create<UserState>((set) => ({
       set({ token: data.token, isAuthenticated: true });
       return data;
     } catch (error) {
+      
       const axiosError = error as AxiosError<{ message?: string }>;
       const errorMessage =
         axiosError.response?.data?.message ?? 'No se pudo iniciar sesión.';
@@ -67,6 +69,8 @@ export const useUserStore = create<UserState>((set) => ({
       set({ isLoading: false });
     }
   },
+
+
   register: async (payload) => {
     set({ isLoading: true, error: null });
 
