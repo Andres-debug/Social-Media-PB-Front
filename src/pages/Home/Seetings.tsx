@@ -96,7 +96,7 @@ const Settings = () => {
 
                   <div>
                     <label className="block mb-2 text-sm text-gray-500">
-                      Nombre
+                      Nombre.
                     </label>
 
                     <input
@@ -108,7 +108,7 @@ const Settings = () => {
 
                   <div>
                     <label className="block mb-2 text-sm text-gray-500">
-                      Usuario
+                      Usuario.
                     </label>
 
                     <input
